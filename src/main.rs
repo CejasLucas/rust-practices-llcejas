@@ -15,8 +15,8 @@ fn main() {
     let choice = utils::assistant::read_u32("Enter your choice (1-3): ");
 
     match choice {
-        1 => numerical_methods::menu::menu(), 
-        2 => sorting_algorithms::menu::menu(),
+        1 => numerical_methods::menu::implementation(), 
+        2 => sorting_algorithms::menu::implementation(),
         3 => println!("Concurrence menu not implemented yet."),
         _ => println!("Invalid option. Please enter 1 to 3."),
     }

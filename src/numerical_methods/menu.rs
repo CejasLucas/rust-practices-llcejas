@@ -1,34 +1,67 @@
-use crate::utils::assistant;
-use crate::numerical_methods::{
+use crate::utils::format_input;
+
+use crate::numerical_methods::nonlinear_equations::{
     method_bisection::BisectionMethod,
     method_newton_raphson::NewtonRaphsonMethod,
     method_secant::SecantMethod,
-    NumericalMethodStrategy, 
+    NonlinearEquationsStrategy,
+};
+
+use crate::numerical_methods::linear_equation_system::{
+    method_gauss::GaussMethod,
+    method_factorization::FactorizationLUMethod,
+    method_jacobi::JacobiMethod,
+    LinearEquationSystemStrategy,
 };
 
 pub fn implementation() {
-    println!();
-    println!("==========================================");  
-    println!("📂 SECONDARY MENU - NUMERICAL METHOD");
-    println!("↪︎ Select an option.");
+    println!("\n==========================================");  
+    println!("📂 SECONDARY MENU - NUMERICAL METHODS");
     println!("1. Bisection Method");
     println!("2. Newton-Raphson Method");
     println!("3. Secant Method");
+    println!("4. Gaussian Elimination");
+    println!("5. LU Decomposition");
+    println!("6. Jacobi Method");
+    println!("0. Exit");
 
-    let choice = assistant::read_u32("Enter your choice (1-3): ");
+    let choice = format_input::read_u32("Enter your choice (0-6): ");
 
-    let strategy: Box<dyn NumericalMethodStrategy> = match choice {
-        1 => Box::new(BisectionMethod),
-        2 => Box::new(NewtonRaphsonMethod),
-        3 => Box::new(SecantMethod),
+    // Define a trait object that can be either type
+    enum StrategyType {
+        Nonlinear(Box<dyn NonlinearEquationsStrategy>),
+        Linear(Box<dyn LinearEquationSystemStrategy>),
+    }
+
+    let strategy: Option<StrategyType> = match choice {
+        // Nonlinear methods
+        1 => Some(StrategyType::Nonlinear(Box::new(BisectionMethod))),
+        2 => Some(StrategyType::Nonlinear(Box::new(NewtonRaphsonMethod))),
+        3 => Some(StrategyType::Nonlinear(Box::new(SecantMethod))),
+
+        // Linear systems methods
+        4 => Some(StrategyType::Linear(Box::new(GaussMethod))),
+        5 => Some(StrategyType::Linear(Box::new(FactorizationLUMethod))),
+        6 => Some(StrategyType::Linear(Box::new(JacobiMethod))),
+
+        // Exit 
+        0 => {
+            println!("Exiting program.");
+            return;
+        }
         _ => {
-            println!("Invalid choice. Please enter 1 to 3.");
+            println!("Invalid option. Please enter a number from 0 to 6.");
             return;
         }
     };
 
-    let time = strategy.execute();
-
-    println!("Execution time: {:.6} seconds", time.as_secs_f64());
-    println!("---------------------------------------------------------------------------------\n");
+    // Now execute based on which type it is
+    if let Some(s) = strategy {
+        let time = match s {
+            StrategyType::Nonlinear(method) => method.execute(),
+            StrategyType::Linear(method) => method.execute(),
+        };
+        println!("Execution time: {:.6} seconds", time.as_secs_f64());
+        println!("-------------------------------------------------------------\n");
+    }
 }

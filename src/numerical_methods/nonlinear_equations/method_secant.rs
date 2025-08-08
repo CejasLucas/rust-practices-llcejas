@@ -1,18 +1,18 @@
 use std::time::{Instant, Duration};
-use crate::utils::assistant;
-use crate::numerical_methods::NumericalMethodStrategy;
+use crate::utils::format_input;
+use crate::numerical_methods::nonlinear_equations::NonlinearEquationsStrategy;
 pub struct SecantMethod;
 
-impl NumericalMethodStrategy for SecantMethod {
+impl NonlinearEquationsStrategy for SecantMethod {
     fn name(&self) -> &str { "SECANT" }
 
     fn print_function(&self) -> &str { "f(x) = x³ - x - 1" }
 
     fn execute(&self) -> Duration {
         self.print_header();
-        let x0 = assistant::read_f64("Enter first initial guess (x0): ");
-        let x1 = assistant::read_f64("Enter second initial guess (x1): ");
-        let max_iter = assistant::read_u32("Enter maximum number of iterations: ");
+        let x0 = format_input::read_f64("Enter first initial guess (x0): ");
+        let x1 = format_input::read_f64("Enter second initial guess (x1): ");
+        let max_iter = format_input::read_u32("Enter maximum number of iterations: ");
         
         let start_time = Instant::now();
         Self::find_root_point(x0, x1, max_iter);

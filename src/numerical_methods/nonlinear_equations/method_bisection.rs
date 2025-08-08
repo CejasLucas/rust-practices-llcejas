@@ -1,19 +1,20 @@
 use std::time::{Instant, Duration};
-use crate::utils::assistant;
-use crate::numerical_methods::NumericalMethodStrategy;
+use crate::utils::format_input;
+use crate::numerical_methods::nonlinear_equations::NonlinearEquationsStrategy;
 
 pub struct BisectionMethod;
 
-impl NumericalMethodStrategy for BisectionMethod {
+impl NonlinearEquationsStrategy for BisectionMethod {
     fn name(&self) -> &str { "BISECTION" }
+    
     fn print_function(&self) -> &str { "f(x) = x * sin(x)" }
 
     fn execute(&self) -> Duration {
         self.print_header();
 
-        let a = assistant::read_f64("Enter the value of a: ");
-        let b = assistant::read_f64("Enter the value of b: ");
-        let max_iter = assistant::read_u32("Enter the maximum number of iterations: ");
+        let a = format_input::read_f64("Enter the value of a: ");
+        let b = format_input::read_f64("Enter the value of b: ");
+        let max_iter = format_input::read_u32("Enter the maximum number of iterations: ");
 
         let start_time = Instant::now();
         Self::find_root_interval(a, b, max_iter);

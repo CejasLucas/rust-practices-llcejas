@@ -6,13 +6,13 @@ mod sorting_algorithms;
 fn main() {
     println!();
     println!("==========================================");  
-    println!("🗂️  MAIN SYSTEM MENU IN RUST");
+    println!("🗂️  LOGIN MENU - SYSTEM MADE RUST");
     println!("⏭︎  Select an option.");
     println!("1. Numerical Methods");
     println!("2. Sorting Algorithms");
     println!("3. Concurrence");
 
-    let choice = utils::assistant::read_u32("Enter your choice (1-3): ");
+    let choice = utils::format_input::read_u32("Enter your choice (1-3): ");
 
     match choice {
         1 => numerical_methods::menu::implementation(), 

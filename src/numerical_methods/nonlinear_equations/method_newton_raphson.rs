@@ -1,17 +1,17 @@
 use std::time::{Instant, Duration};
-use crate::utils::assistant;
-use crate::numerical_methods::NumericalMethodStrategy;
+use crate::utils::format_input;
+use crate::numerical_methods::nonlinear_equations::NonlinearEquationsStrategy;
 pub struct NewtonRaphsonMethod;
 
-impl NumericalMethodStrategy for NewtonRaphsonMethod {
+impl NonlinearEquationsStrategy for NewtonRaphsonMethod {
     fn name(&self) -> &str { "NEWTON-RAPHSON" }
     
     fn print_function(&self) -> &str { "f(x) = x³ - x - 2" }
 
     fn execute(&self) -> Duration {
         self.print_header();
-        let x0 = assistant::read_f64("Enter initial guess (x0): ");
-        let max_iter = assistant::read_u32("Enter maximum number of iterations: ");
+        let x0 = format_input::read_f64("Enter initial guess (x0): ");
+        let max_iter = format_input::read_u32("Enter maximum number of iterations: ");
         
         let start_time = Instant::now();
         Self::find_root_point(x0, max_iter);

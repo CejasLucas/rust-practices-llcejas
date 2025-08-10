@@ -1,13 +1,11 @@
 use ndarray::{Array2};
 use std::time::{Instant, Duration};
-use crate::{numerical_methods::linear_equation_system::LinearEquationSystemStrategy, utils::format_arrays};
-
+use crate::{utils::format_arrays};
+use crate::{numerical_methods::linear_systems::strategy::LinearEquationSystemStrategy};
 pub struct FactorizationLUMethod;
 
 impl LinearEquationSystemStrategy for FactorizationLUMethod {
-    fn name(&self) -> &str {
-        "FACTORIZATION LU"
-    }
+    fn name(&self) -> &str { "FACTORIZATION LU" }
 
     fn execute(&self) -> Duration {
         self.print_header();

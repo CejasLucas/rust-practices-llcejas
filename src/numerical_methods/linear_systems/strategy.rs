@@ -1,7 +1,3 @@
-pub mod method_factorization;
-pub mod method_gauss;
-pub mod method_jacobi;
-
 use std::time::Duration;
 use crate::utils::format_arrays;
 use ndarray::{array, Array1, Array2};
@@ -35,8 +31,7 @@ pub trait LinearEquationSystemStrategy {
     }
 
     fn print_header(&self) {
-        println!();
-        println!("-------------------------------------------------------------\n");
+        println!("\n{}", "-".repeat(100));
         println!("⚙️  {} METHOD | {}", self.name(), self.print_template());
     }
 }

@@ -1,66 +1,72 @@
-# 🦀 Proyecto personal en Rust
+# 🦀 Proyecto Personal en Rust — Prácticas y Algoritmos
 
 ![Rust](https://img.shields.io/badge/Rust-1.x-orange?logo=rust)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
 
-¡Bienvenido! Este es mi repositorio personal donde pongo en práctica mis habilidades como programador.  
-
-Este proyecto está orientado a estudiantes y autodidactas que buscan fortalecer su comprensión de **Rust**, un lenguaje moderno, seguro y eficiente. Aquí encontrarás implementaciones prácticas de algoritmos y métodos numéricos, organizados de manera modular y escalable, siguiendo buenas prácticas de programación.
-
----
-
-## 📂 Contenido del repositorio
-
-- Algoritmos de ordenamiento implementados desde cero
-- Métodos numéricos clásicos (bisección, Newton-Raphson, secante)
-- Módulos de utilidades para facilitar el reuso de funciones
-
-Todo está estructurado en módulos y submódulos para facilitar la lectura, reutilización y mantenimiento del código.
+Bienvenido a mi repositorio personal de prácticas en **Rust**.  
+Este proyecto está pensado para estudiantes, autodidactas y entusiastas que deseen fortalecer su comprensión del lenguaje a través de implementaciones reales de **algoritmos** y **métodos numéricos**, con una estructura modular y escalable.
 
 ---
 
-## 🧰 Temas y herramientas
+## 📂 Contenido del Repositorio
 
-### Lenguaje y características de Rust:
+- **Algoritmos de Ordenamiento** — Implementados desde cero, con diferentes estrategias (burbuja, quicksort, mergesort, heapsort, etc.).
+- **Métodos Numéricos** — Incluye métodos para sistemas lineales, búsqueda de raíces e interpolación/regresión.
+- **Módulos de Utilidades** — Funciones para manejo de entrada, formateo y reutilización de código.
+- **Menús interactivos** para navegar entre las distintas categorías de algoritmos y métodos.
 
-- Propiedad y **borrowing**
-- Tipos genéricos y funciones parametrizadas
-- Uso de **`Result`** y manejo de errores
-- Organización modular con `mod.rs`
-- `match`, `if let`, `loop`, `for`, `while`
-- Crates estándar (`std`) y estructura de proyectos con `Cargo`
+---
+
+## 🧰 Características Técnicas
+
+- **Rust moderno y seguro**: aprovechando propiedad, borrowing y tipos genéricos.
+- **Organización modular**: cada carpeta corresponde a un tema principal.
+- **Manejo de errores idiomático** con `Result` y `Option`.
+- Uso de `match`, `if let`, bucles (`loop`, `for`, `while`) y patrones.
+- Código documentado y preparado para ampliaciones futuras.
 
 ---
 
 ## 📁 Estructura del Proyecto
 
-Cada carpeta dentro de `src/` representa un tema específico del aprendizaje.
-
 ```bash
-.
-├── src/
-│   ├── numerical_methods/      # Métodos numéricos clásicos
-│   │   ├── method_bisection.rs
-│   │   ├── method_newton_raphson.rs
-│   │   ├── method_secant.rs
-│   │   ├── menu.rs
-│   │   └── mod.rs
-│   ├── sorting_algorithms/     # Algoritmos de ordenamiento
-│   │   ├── sort_bubble.rs
-│   │   ├── sort_heap.rs
-│   │   ├── sort_insertion.rs
-│   │   ├── sort_merge.rs
-│   │   ├── sort_quick.rs
-│   │   ├── sort_selection.rs
-│   │   ├── menu.rs
-│   │   └── mod.rs
-│   ├── utils/                  # Funciones de utilidad
-│   │   ├── assistant.rs
-│   │   └── mod.rs
-│   └── main.rs                 # Punto de entrada del proyecto
-├── Cargo.toml                  # Metadata del proyecto y dependencias
-├── Cargo.lock                  # Versiones exactas usadas
-└── .gitignore
-
+src/
+├── main.rs
+├── utils/                          # Funciones auxiliares
+│   ├── format_arrays.rs
+│   ├── format_input.rs
+│   └── mod.rs
+├── sorting_algorithms/             # Algoritmos de ordenamiento
+│   ├── menu.rs
+│   ├── sort_bubble.rs
+│   ├── sort_heap.rs
+│   ├── sort_insertion.rs
+│   ├── sort_merge.rs
+│   ├── sort_quick.rs
+│   ├── sort_selection.rs
+│   ├── strategy.rs
+│   └── mod.rs
+└── numerical_methods/              # Métodos numéricos
+    ├── interpolation_and_regression/
+    │   ├── interpolation_lagrange.rs
+    │   ├── interpolation_newton.rs
+    │   ├── strategy.rs
+    │   └── mod.rs
+    ├── linear_systems/
+    │   ├── method_factorization.rs
+    │   ├── method_gauss.rs
+    │   ├── method_jacobi.rs
+    │   ├── strategy.rs
+    │   └── mod.rs
+    ├── root_finding/
+    │   ├── method_bisection.rs
+    │   ├── method_newton_raphson.rs
+    │   ├── method_secant.rs
+    │   ├── strategy.rs
+    │   └── mod.rs
+    ├── menu.rs
+    └── mod.rs
 ```
 
 ## 🚀 Cómo compilar y ejecutar

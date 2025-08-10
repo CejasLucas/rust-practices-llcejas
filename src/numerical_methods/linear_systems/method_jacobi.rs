@@ -2,7 +2,7 @@ use ndarray::{Array1};
 use std::time::{Instant, Duration};
 use crate::utils::format_input;
 use crate::utils::format_arrays;
-use crate::numerical_methods::linear_equation_system::LinearEquationSystemStrategy;
+use crate::{numerical_methods::linear_systems::strategy::LinearEquationSystemStrategy};
 pub struct JacobiMethod;
 
 /// Jacobi Method for solving linear systems Ax = b.

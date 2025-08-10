@@ -1,5 +1,4 @@
-use crate::sorting_algorithms::SortStrategy;
-
+use crate::sorting_algorithms::strategy::SortStrategy;
 pub struct QuickSort;
 
 impl SortStrategy for QuickSort {
@@ -12,53 +11,37 @@ impl SortStrategy for QuickSort {
 }
 
 impl QuickSort {
-    fn partition(arr: &mut [f64]) -> usize {
-        let mut i = 0;
-        let pivot = arr[arr.len() - 1];
-        println!("\n🔹 Partitioning: {:?} | Pivot: {}", arr, pivot);
-
-        for j in 0..arr.len() - 1 {
-            if arr[j] <= pivot {
-                println!(
-                    "arr[{}] (value: {}) <= pivot (value: {}) → swapping with arr[{}] (value: {})",
-                    j, arr[j], pivot, i, arr[i]
-                );
-                arr.swap(i, j);
-                println!("Array after swap: {:?}", arr);
-                i += 1;
-            } else {
-                println!("arr[{}] (value: {}) > pivot → no swap", j, arr[j]);
-            }
-        }
-
-        println!(
-            "  Swapping pivot with element at index {} → arr[{}] <-> arr[{}]",
-            i,
-            i,
-            arr.len() - 1
-        );
-        arr.swap(i, arr.len() - 1);
-        println!("✅ Partitioned array: {:?}", arr);
-
-        i // Return pivot index
-    }
-
     fn quick_sort(arr: &mut [f64]) {
-        if arr.len() <= 1 {
-            return;
-        }
-
-        println!("\n📦 Quick sorting subarray: {:?}", arr);
+        if arr.len() <= 1 { return; }
 
         let pivot_index = Self::partition(arr);
 
         let (left, right) = arr.split_at_mut(pivot_index);
-        let right = &mut right[1..]; // Exclude pivot
-
-        println!("⬅️ Left side to sort: {:?}", left);
-        println!("➡️ Right side to sort: {:?}", right);
+        let right = &mut right[1..]; // exclude pivot
 
         Self::quick_sort(left);
         Self::quick_sort(right);
+    }
+
+    fn partition(arr: &mut [f64]) -> usize {
+        let mut i = 0;
+        let pivot = arr[arr.len() - 1];
+
+        for j in 0..arr.len() - 1 {
+            if arr[j] <= pivot {
+                if i != j {
+                    arr.swap(i, j);
+                    println!("\n🔀 Swapped indices {} and {} => {:?}", i, j, arr);
+                }
+                i += 1;
+            }
+        }
+
+        if i != arr.len() - 1 {
+            arr.swap(i, arr.len() - 1);
+            println!("\n🔀  Swapped pivot to index {} => {:?}", i, arr);
+        }
+
+        i
     }
 }

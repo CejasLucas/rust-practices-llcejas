@@ -1,7 +1,7 @@
 use std::time::Instant;
 use crate::utils::format_input;
 use crate::sorting_algorithms::{
-    SortStrategy,
+    strategy::SortStrategy,
     sort_bubble::BubbleSort,
     sort_selection::SelectionSort,
     sort_insertion::InsertionSort,
@@ -13,7 +13,7 @@ use crate::sorting_algorithms::{
 pub fn implementation() {
     let mut arr = [15.75, -21.55, 83.25, -11.15, 75.05, 93.45, -57.10, 89.50];
     
-    println!("\n==========================================");  
+    println!("\n{}", "=".repeat(100));
     println!("📂 SECONDARY MENU - SORTING ALGORITHMS");
     println!("1. Bubble Sort");
     println!("2. Selection Sort");
@@ -44,6 +44,5 @@ pub fn implementation() {
 
     println!("\nSorted array: {:?}", arr);
     println!("Execution time: {:.6} seconds", elapsed.as_secs_f64());
-    println!("---------------------------------------------------------------------------------\n");
-        
+    println!("\n{}", "-".repeat(100));  
 }

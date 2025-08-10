@@ -1,6 +1,6 @@
 use std::time::{Instant, Duration};
 use crate::utils::format_input;
-use crate::numerical_methods::nonlinear_equations::NonlinearEquationsStrategy;
+use crate::numerical_methods::root_finding::strategy::NonlinearEquationsStrategy;
 pub struct NewtonRaphsonMethod;
 
 impl NonlinearEquationsStrategy for NewtonRaphsonMethod {

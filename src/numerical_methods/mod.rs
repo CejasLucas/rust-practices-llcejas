@@ -1,3 +1,4 @@
 pub mod menu;
-pub mod nonlinear_equations;
-pub mod linear_equation_system;
+pub mod root_finding;
+pub mod linear_systems;
+pub mod interpolation_and_regression;

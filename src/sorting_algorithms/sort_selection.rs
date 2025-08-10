@@ -1,4 +1,4 @@
-use crate::sorting_algorithms::SortStrategy;
+use crate::sorting_algorithms::strategy::SortStrategy;
 pub struct SelectionSort;
 
 impl SortStrategy for SelectionSort {

@@ -1,21 +1,28 @@
 use crate::utils::format_input;
 
-use crate::numerical_methods::nonlinear_equations::{
+use crate::numerical_methods::root_finding::{
     method_bisection::BisectionMethod,
     method_newton_raphson::NewtonRaphsonMethod,
     method_secant::SecantMethod,
-    NonlinearEquationsStrategy,
+    strategy::NonlinearEquationsStrategy,
 };
 
-use crate::numerical_methods::linear_equation_system::{
+use crate::numerical_methods::linear_systems::{
     method_gauss::GaussMethod,
     method_factorization::FactorizationLUMethod,
     method_jacobi::JacobiMethod,
-    LinearEquationSystemStrategy,
+    strategy::LinearEquationSystemStrategy,
 };
 
+use crate::numerical_methods::interpolation_and_regression::{
+    interpolation_lagrange::LagrangeInterpolation,
+    interpolation_newton::NewtonInterpolation,
+    strategy::InterpolationStrategy,
+};
+
+
 pub fn implementation() {
-    println!("\n==========================================");  
+    println!("\n{}", "=".repeat(100));  
     println!("📂 SECONDARY MENU - NUMERICAL METHODS");
     println!("1. Bisection Method");
     println!("2. Newton-Raphson Method");
@@ -23,6 +30,8 @@ pub fn implementation() {
     println!("4. Gaussian Elimination");
     println!("5. LU Decomposition");
     println!("6. Jacobi Method");
+    println!("7. Lagrange Interpolation");
+    println!("8. Newton Interpolation");
     println!("0. Exit");
 
     let choice = format_input::read_u32("Enter your choice (0-6): ");
@@ -31,6 +40,7 @@ pub fn implementation() {
     enum StrategyType {
         Nonlinear(Box<dyn NonlinearEquationsStrategy>),
         Linear(Box<dyn LinearEquationSystemStrategy>),
+        Interpolation(Box<dyn InterpolationStrategy>)
     }
 
     let strategy: Option<StrategyType> = match choice {
@@ -43,6 +53,10 @@ pub fn implementation() {
         4 => Some(StrategyType::Linear(Box::new(GaussMethod))),
         5 => Some(StrategyType::Linear(Box::new(FactorizationLUMethod))),
         6 => Some(StrategyType::Linear(Box::new(JacobiMethod))),
+
+        // Interpolation and regression
+        7 => Some(StrategyType::Interpolation(Box::new(LagrangeInterpolation))),
+        8 => Some(StrategyType::Interpolation(Box::new(NewtonInterpolation))),
 
         // Exit 
         0 => {
@@ -60,8 +74,9 @@ pub fn implementation() {
         let time = match s {
             StrategyType::Nonlinear(method) => method.execute(),
             StrategyType::Linear(method) => method.execute(),
+            StrategyType::Interpolation(method) => method.execute(),
         };
         println!("Execution time: {:.6} seconds", time.as_secs_f64());
-        println!("-------------------------------------------------------------\n");
+        println!("{}", "-".repeat(100));
     }
 }

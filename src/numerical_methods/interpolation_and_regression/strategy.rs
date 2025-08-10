@@ -1,7 +1,6 @@
 use std::time::Duration;
-
 use ndarray::{array, Array1};
-
+use crate::utils::format_space;
 pub trait InterpolationStrategy {
     fn name(&self) -> &str;
 
@@ -16,7 +15,8 @@ pub trait InterpolationStrategy {
     } 
 
     fn print_header(&self) {
-        println!("\n{}", "-".repeat(100));
+        println!();
+        format_space::space("=", 100);
         println!("⚙️ INTERPOLATION - {} POLINOMIAL", self.name());
         println!("Axis points (x) = {:?} \n", self.vector_of_x());
         println!("Axis points (y) = {:?} \n", self.vector_of_y());

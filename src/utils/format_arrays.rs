@@ -1,5 +1,17 @@
 use ndarray::{Array1, Array2};
 
+pub fn augmented_matrix_to_string(a: &Array2<f64>, b: &Array1<f64>) -> String {
+    let mut output = String::new();
+    for i in 0..a.nrows() {
+        let row_vals: Vec<String> = a.row(i)
+            .iter()
+            .map(|v| format!("{:8.4}", v))
+            .collect();
+        output.push_str(&format!("[{} | {:8.4}]\n", row_vals.join(" "), b[i]));
+    }
+    output
+}
+
 pub fn matrix_to_string_ndarray(a: &Array2<f64>) -> String {
     let mut result = String::from("[\n");
     for row in a.rows() {

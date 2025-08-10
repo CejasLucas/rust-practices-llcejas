@@ -1,5 +1,5 @@
 use std::time::Duration;
-
+use crate::utils::format_space;
 pub trait NonlinearEquationsStrategy {    
     
     fn name(&self) -> &str;
@@ -11,7 +11,8 @@ pub trait NonlinearEquationsStrategy {
     fn tolerance(&self) -> f64 { 1e-6 }
 
     fn print_header(&self) {
-        println!("\n{}", "-".repeat(100));
+        println!();
+        format_space::space("=", 100);
         println!("⚙️  {} METHOD | {}", self.name(), self.print_function());
     }
 }

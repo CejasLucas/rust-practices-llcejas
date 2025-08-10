@@ -4,8 +4,8 @@ mod sorting_algorithms;
 
 /// RUST 🦀
 fn main() {
-    println!("\n{}", "=".repeat(100));  
-    println!("🗂️  LOGIN MENU - SYSTEM MADE RUST");
+    utils::format_space::space("=", 100);
+    println!("💼 LOGIN MENU - SYSTEM MADE RUST");
     println!("⏭︎  Select an option.");
     println!("1. Numerical Methods");
     println!("2. Sorting Algorithms");

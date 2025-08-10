@@ -7,42 +7,75 @@ pub struct LagrangeInterpolation;
 impl InterpolationStrategy for LagrangeInterpolation {
     fn name(&self) -> &str { "LAGRANGE" }
 
-    // Executes the interpolation process and returns the elapsed time
     fn execute(&self) -> Duration {
         self.print_header();
-        // Read the value where the interpolation is evaluated
-        let x_eval = format_input::read_f64("Enter the value of a: ");
+        let x_eval = format_input::read_f64("Enter the value of x: ");
         let start_time = Instant::now();
-        // Perform interpolation at x_eval
         Self::interpolate(&self, x_eval);
-        // Return the elapsed time
         start_time.elapsed()
     }
 }
 
 impl LagrangeInterpolation {
-    // Performs Lagrange interpolation at the given x_eval
     fn interpolate(&self, x_eval: f64) -> f64 {
         let x = self.vector_of_x();
         let y = self.vector_of_y();
         let n = x.len();
 
         let mut result = 0.0;
-        // Loop over each term of the Lagrange polynomial
+        let mut symbolic_lines = Vec::new();
+        let mut evaluated_terms = Vec::new();
+
+        println!("\n📐 Lagrange Polynomial");
+        println!("P(x) = Σ yᵢ * Lᵢ(x), where -> Lᵢ(x) = Π (x - xⱼ) / (xᵢ - xⱼ) for j ≠ i");
+        
         for i in 0..n {
-            let mut term = y[i];
-            // Compute the Lagrange basis polynomial L_i(x_eval)
+            let mut li_value = 1.0;
+            let mut terms = Vec::new();
+
             for j in 0..n {
                 if i != j {
-                    term *= (x_eval - x[j]) / (x[i] - x[j]);
+                    let num = if x[j] < 0.0 {
+                        format!("(x + {:.5})", -x[j])
+                    } else {
+                        format!("(x - {:.5})", x[j])
+                    };
+
+                    let den = x[i] - x[j];
+                    let frac = format!("{}/ {:.5}", num, den);
+                    terms.push(frac);
+
+                    li_value *= (x_eval - x[j]) / den;
                 }
             }
-            println!("L_{}({}) * y = {}", i, x_eval, term);
-            result += term;
+
+            let li_symbolic = terms.join(" * ");
+            let li_full = format!("({})", li_symbolic);
+            let term_val = y[i] * li_value;
+
+            symbolic_lines.push(format!(
+                "\nTerm {}: y[{}] * L_{}(x) =\n{:.5} * {}",
+                i, i, i, y[i], li_full
+            ));
+
+            evaluated_terms.push(format!(
+                "L_{}({:.5}) * y[{}] = {:.5} * {:.5} = {:.5}",
+                i, x_eval, i, li_value, y[i], term_val
+            ));
+
+            result += term_val;
         }
 
-        // Print the final result of the interpolation
-        println!("\n🎯 Lagrange Polynomial result P({}) = {}\n", x_eval, result);
+        for line in symbolic_lines {
+            println!("{}", line);
+        }
+
+        println!("\n🧮 Evaluated at x = {:.5}:", x_eval);
+        for term in evaluated_terms {
+            println!("{}", term);
+        }
+
+        println!("\n🎯 Lagrange Polynomial evaluated at x = {:.5}: P({:.5}) = {:.10}\n", x_eval, x_eval, result);
         result
     }
 }

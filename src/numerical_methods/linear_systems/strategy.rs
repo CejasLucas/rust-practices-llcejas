@@ -1,7 +1,6 @@
 use std::time::Duration;
-use crate::utils::format_arrays;
 use ndarray::{array, Array1, Array2};
-
+use crate::utils::{format_arrays, format_space};
 pub trait LinearEquationSystemStrategy {
     fn execute(&self) -> Duration;
 
@@ -31,7 +30,8 @@ pub trait LinearEquationSystemStrategy {
     }
 
     fn print_header(&self) {
-        println!("\n{}", "-".repeat(100));
+        println!();
+        format_space::space("=", 100);
         println!("⚙️  {} METHOD | {}", self.name(), self.print_template());
     }
 }

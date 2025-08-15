@@ -1,4 +1,5 @@
 mod utils;
+mod concurrence;
 mod numerical_methods;
 mod sorting_algorithms;
 
@@ -16,7 +17,7 @@ fn main() {
     match choice {
         1 => numerical_methods::menu::implementation(), 
         2 => sorting_algorithms::menu::implementation(),
-        3 => println!("Concurrence menu not implemented yet."),
+        3 => concurrence::menu::implementation(),
         _ => println!("Invalid option. Please enter 1 to 3."),
     }
 }

@@ -1,30 +1,30 @@
 # 🦀 Proyecto Personal en Rust — Prácticas y Algoritmos
 
 ![Rust](https://img.shields.io/badge/Rust-1.x-orange?logo=rust)
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
 
-Bienvenido a mi repositorio personal de prácticas en **Rust**.  
-Este proyecto está pensado para estudiantes, autodidactas y entusiastas que deseen fortalecer su comprensión del lenguaje a través de implementaciones reales de **algoritmos** y **métodos numéricos**, con una estructura modular y escalable.
+Este es mi repositorio personal de **prácticas en Rust**.  
+Está diseñado para estudiantes, autodidactas y entusiastas que quieran fortalecer sus conocimientos mediante implementaciones reales de **algoritmos**, **métodos numéricos** y **concurrencia**, todo dentro de una arquitectura **modular** y **escalable**.
 
 ---
 
-## 📂 Contenido del Repositorio
+## 📂 Contenido Principal
 
-- **Algoritmos de Ordenamiento** — Implementados desde cero, con diferentes estrategias (burbuja, quicksort, mergesort, heapsort, etc.).
-- **Métodos Numéricos** — Incluye métodos para sistemas lineales, búsqueda de raíces e interpolación/regresión.
-- **Módulos de Utilidades** — Funciones para manejo de entrada, formateo y reutilización de código.
-- **Menús interactivos** para navegar entre las distintas categorías de algoritmos y métodos.
+- **🌀 Algoritmos de Ordenamiento** — Implementaciones desde cero: burbuja, quicksort, mergesort, heapsort, selección, inserción, etc.
+- **📊 Métodos Numéricos** — Sistemas lineales, búsqueda de raíces, interpolación y regresión.
+- **⚙️ Módulos de Utilidades** — Funciones para formatear datos, manejar entrada y optimizar código.
+- **🖥 Menús Interactivos** — Para navegar entre categorías de algoritmos y métodos.
+- **⚡ Concurrencia y Paralelismo** — Ejemplos con `std::thread`, `Mutex`, `Arc`, y más.
 
 ---
 
 ## 🧰 Características Técnicas
 
-- **Rust moderno y seguro**: aprovechando propiedad, borrowing y tipos genéricos.
-- **Organización modular**: cada carpeta corresponde a un tema principal.
+- **Rust moderno y seguro**: uso de propiedad, borrowing, lifetimes y tipos genéricos.
+- **Arquitectura modular**: separación por temas para fácil mantenimiento y escalabilidad.
 - **Manejo de errores idiomático** con `Result` y `Option`.
-- Uso de `match`, `if let`, bucles (`loop`, `for`, `while`) y patrones.
-- Código documentado y preparado para ampliaciones futuras.
+- Amplio uso de **patrones de control** (`match`, `if let`, `loop`, `for`, `while`).
+- **Código documentado** y listo para ampliaciones.
 
 ---
 
@@ -36,6 +36,7 @@ src/
 ├── utils/                          # Funciones auxiliares
 │   ├── format_arrays.rs
 │   ├── format_input.rs
+│   ├── format_space.rs
 │   └── mod.rs
 ├── sorting_algorithms/             # Algoritmos de ordenamiento
 │   ├── menu.rs
@@ -47,24 +48,16 @@ src/
 │   ├── sort_selection.rs
 │   ├── strategy.rs
 │   └── mod.rs
-└── numerical_methods/              # Métodos numéricos
-    ├── interpolation_and_regression/
-    │   ├── interpolation_lagrange.rs
-    │   ├── interpolation_newton.rs
-    │   ├── strategy.rs
-    │   └── mod.rs
-    ├── linear_systems/
-    │   ├── method_factorization.rs
-    │   ├── method_gauss.rs
-    │   ├── method_jacobi.rs
-    │   ├── strategy.rs
-    │   └── mod.rs
-    ├── root_finding/
-    │   ├── method_bisection.rs
-    │   ├── method_newton_raphson.rs
-    │   ├── method_secant.rs
-    │   ├── strategy.rs
-    │   └── mod.rs
+├── numerical_methods/              # Métodos numéricos
+│   ├── interpolation_and_regression/
+│   ├── linear_systems/
+│   ├── root_finding/
+│   ├── menu.rs
+│   └── mod.rs
+└── concurrence/                    # Ejemplos de concurrencia
+    ├── example_semaphore_crossing.rs
+    ├── example_shared_counter.rs
+    ├── example_task_scheduler.rs
     ├── menu.rs
     └── mod.rs
 ```
